@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet,Dimensions } from "react-native";
+const { width } = Dimensions.get('window');
+const buttonWidth = (width - 40) / 4;
 
 export const estilos = StyleSheet.create({
     container: {

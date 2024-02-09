@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
+import { estilos } from './Componentes/Estilos';
 
 const { width } = Dimensions.get('window');
 const buttonWidth = (width - 40) / 4;
@@ -18,11 +19,11 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.display1}>
-        <Text style={styles.display}>{valor}</Text>
+    <SafeAreaView style={estilos.container}>
+      <View style={estilos.display1}>
+        <Text style={estilos.display}>{valor}</Text>
       </View>
-      <View style={styles.calculator}>
+      <View style={estilos.calculator}>
         <Cuerpo operaciones={operaciones} />
       </View>
     </SafeAreaView>
@@ -30,7 +31,7 @@ const App = () => {
 };
 
 const Cuerpo = ({ operaciones }) => (
-  <View style={styles.buttonsContainer}>
+  <View style={estilos.buttonsContainer}>
     <Boton texto="AC" onPress={() => operaciones('AC')} special />
     <Boton texto="⌫" onPress={() => operaciones('⌫')} special />
     <Boton texto="%" onPress={() => operaciones(' % ')} special />
@@ -57,66 +58,12 @@ const Boton = ({ texto, onPress, special, double }) => (
   <TouchableOpacity
     onPress={onPress}
     style={[
-      styles.button,
-      special ? styles.specialButton : {},
-      double ? { ...styles.button, width: buttonWidth * 2 + -10 } : {},
+      estilos.button,
+      special ? estilos.specialButton : {},
+      double ? { ...estilos.button, width: buttonWidth * 2 + -10 } : {},
     ]}
   >
-    <Text style={styles.buttonText}>{texto}</Text>
+    <Text style={estilos.buttonText}>{texto}</Text>
   </TouchableOpacity>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  calculator: {
-    alignItems: 'center',
-    padding: 20
-  },
-  display1: {
-    alignItems: 'center',
-    padding: 10,
-    width: '90%'
-  },
-  display: {
-    width: '100%',
-    minHeight: 70,
-    fontSize: 30,
-    backgroundColor: '#fff',
-    borderColor: '#ccc',
-    borderWidth: 2,
-    borderRadius: 5,
-    textAlign: 'right',
-    justifyContent:'center'
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 5,
-    width: buttonWidth - 10,
-    height: buttonWidth - 10,
-    backgroundColor: '#f0f0f0',
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: buttonWidth / 2,
-  },
-  specialButton: {
-    backgroundColor: '#ff8c00',
-    color: '#fff',
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#000',
-  },
-});
-
 export default App;
